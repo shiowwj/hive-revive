@@ -25,9 +25,16 @@ module.exports = (app, allModels) => {
     app.get('/login', loginControllerCallbacks.login); //--okay
     app.post('/login', loginControllerCallbacks.successL); //-- once logged in user would be directed to home page
 
-     //create user data
-    app.get('/register', loginControllerCallbacks.register);
-    app.post('/register', loginControllerCallbacks.successR);
+     //create user (kia) data
+    app.get('/register/user', loginControllerCallbacks.registerU);
+
+    //create user (ah pek) data
+    app.get('/register/entity', loginControllerCallbacks.registerE);
+
+    app.post('/register/user', loginControllerCallbacks.successR);
+
+
+    // app.post('/register/entity', loginControllerCallbacks.successR);
 
 
     //view user data

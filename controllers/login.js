@@ -16,7 +16,7 @@ module.exports = (db) => {
         res.render('login/login');
     };
 
-    let loginSucess = (req,res) =>{
+    let loginSucess = (req,res) => {
         req.body.password = sha256( SALT + req.body.password );
         const loginSessionId = sha256( SALT + SESHSALT + req.body.username);
         db.freeL.findUser(req.body, (err,result)=>{
@@ -84,11 +84,15 @@ module.exports = (db) => {
         })
     }
 
-    let registerStart = (req,res) =>{
-        res.render('login/register');
+    let registerStartUser = (req,res) => {
+        res.render('login/registerUser');
     }
 
-    let registerSuccess = (req,res)=>{
+    let registerStartEntity = (req,res) => {
+        res.render('login/registerEntity');
+    }
+
+    let registerSuccess = (req,res) => {
 
         // check if username taken
 
@@ -107,8 +111,8 @@ module.exports = (db) => {
                 } else if(result == true){ ///can use the username. create account
 
                     db.freeL.add(req.body, (err, resultAdd)=>{
-                        console.log('ADDDED');// ADD ACCOUNT DETAILS
-                        console.log(resultAdd)
+                        // console.log('ADDDED');// ADD ACCOUNT DETAILS
+                        // console.log(resultAdd)
                         //send cookies
                         const loginSessionId = sha256( SALT + SESHSALT + req.body.username);
 
@@ -157,7 +161,8 @@ module.exports = (db) => {
    */
   return {
     login: loginStart,
-    register: registerStart,
+    registerU: registerStartUser,
+    registerE: registerStartEntity,
     successL: loginSucess,
     successR: registerSuccess,
   };

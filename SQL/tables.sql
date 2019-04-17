@@ -8,13 +8,18 @@ location TEXT,
 profile_pic_url TEXT,
 created_at TEXT,
 type TEXT
--- following TEXT,
--- followers TEXT
 );
 
-CREATE TABLE IF NOT EXISTS tweeds (
-id SERIAL PRIMARY KEY,
-tweeds TEXT,
-created_at TEXT,
-user_id INTEGER
-);
+-- CREATE TABLE IF NOT EXISTS entities (
+-- id SERIAL PRIMARY KEY,
+-- username TEXT,
+-- password TEXT,
+-- entity_name TEXT,
+-- service TEXT,
+-- email TEXT,
+-- contact_number VARCHAR(10),
+-- location TEXT,
+-- created_at TEXT,
+-- type TEXT
+-- );
+-- profile_desc VARCHAR(200),

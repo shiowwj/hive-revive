@@ -78,6 +78,9 @@ class RightSidebar extends React.Component{
                                     <p class="text text-right">{item.username}</p>
                                 </div>
                                 <div>
+                                    <p class="text text-center">{item.type}</p>
+                                </div>
+                                <div>
                                     <form method="POST" action={formAction}>
                                     <input type="submit" class="btn btn-default" value="Follow"/>
                                     </form>

@@ -46,7 +46,7 @@ class SignUpForm extends React.Component{
                 <div class="p-2 m-4">
                     <h2>Register an account</h2>
                     <div class="row justify-content-center">
-                        <form method="POST" action="/register">
+                        <form method="POST" action="/register/user">
                         <div class="mt-3">
                             <label>Location</label>
                             <input type="text" class="form-control" name="location" required/>
@@ -59,11 +59,8 @@ class SignUpForm extends React.Component{
                             <label>Interest</label>
                             <textarea class="form-control" rows="2" name="Interest" required></textarea>
                         </div>
-                        <div class="mt-3">
-                            <label>Freelance or Business Owner?</label>
-                            <textarea type="text" class="form-control" name="type" required></textarea>
-                        </div>
-                        <div class="mt-3">
+                            <input type="text" class="form-control invisible" name="type" value="freelance"/>
+                        <div class="">
                             <label>Upload Photo</label>
                             <input type="text" class="form-control" name="profile_pic_url"/>
                         </div>

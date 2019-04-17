@@ -39,42 +39,42 @@ class Aside extends React.Component{
     }
 }
 
-class LoginForm extends React.Component{
+class SignUpForm extends React.Component{
     render(){
         return (
             <html>
-                <div class="p-3 m-5">
-                    <h2>Login with Existing Account</h2>
-                    <div class="row pt-4 justify-content-center">
-                        <form method="POST" action="/login">
-                            <input type="text" class="p-3 ml-2 mr-1" name="username" placeholder="Username"/>
-                            <input type="password" class="p-3 ml-1 mr-2" name="password" placeholder="Password"/>
-                            <input type="submit" class="btn btn-outline-primary border border-primary btn-lg mt-3" value="Login"/>
+                <div class="p-2 m-4">
+                    <h2>Register an account</h2>
+                    <div class="row justify-content-center">
+                        <form method="POST" action="/register/user">
+                        <div class="mt-3">
+                            <label>Store Location:</label>
+                            <input type="text" class="form-control" name="location" required/>
+                        </div>
+                         <div class="mt-3">
+                            <label>What does your shop sell?</label>
+                            <textarea class="form-control" rows="2" name="profile_desc" required></textarea>
+                        </div>
+                         <div class="mt-3">
+                            <label>What are you looking for?</label>
+                            <textarea class="form-control" rows="2" name="Interest" required></textarea>
+                        </div>
+                            <input type="text" class="form-control invisible" name="type" value="entity"/>
+                        <div class="">
+                            <label>Upload Photo</label>
+                            <input type="text" class="form-control" name="profile_pic_url"/>
+                        </div>
+                        <div class="mt-3">
+                            <label>New Username</label>
+                            <input type="text" class="form-control" name="username" required/>
+                        </div>
+                        <div class="mt-3">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" required/>
+                        </div>
+                        <button type="submit" class="btn-success border border-primary btn-lg mt-5">Create Account</button>
                         </form>
                     </div>
-                </div>
-            </html>
-        )
-    }
-}
-
-class SignUp extends React.Component{
-    render(){
-        return (
-            <html>
-                <div class="p-3 m-5">
-                    <h2>New?</h2>
-
-                        <form method="GET" action="/register/user">
-                            <div class="row justify-content-center">
-                                <button type="submit" class="btn-success border border-primary btn-lg mt-3">Heartland Kia?</button>
-                            </div>
-                        </form>
-                        <form method="GET" action="/register/entity">
-                            <div class="row justify-content-center">
-                                <button type="submit" class="btn-success border border-primary btn-lg mt-3">Heartland Ah Pek?</button>
-                            </div>
-                        </form>
                 </div>
             </html>
         )
@@ -94,8 +94,7 @@ class Login extends React.Component {
                                 <Aside/>
                             </div>
                             <div class="col-6  bg-light">
-                                <LoginForm/>
-                                <SignUp/>
+                                <SignUpForm/>
                             </div>
                         </div>
                     </div>
