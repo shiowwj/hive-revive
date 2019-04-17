@@ -177,7 +177,7 @@ class Edit extends React.Component {
                                             <label>Edit Username</label>
                                             <input type="text" class="form-control" name="username" value={this.props.data.username}/>
                                         </div>
-                                        <button type="submit" class="btn-success border border-primary btn-lg mt-5">Create Account</button>
+                                        <button type="submit" class="btn-success border border-primary btn-lg mt-5">Submit Changes</button>
                                         </form>
                                     </div>
                                 </div>

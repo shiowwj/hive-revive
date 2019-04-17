@@ -14,32 +14,25 @@ module.exports = (db) => {
 
     let homeView = (req, res) => {
 
-        // db.tweeds.allTweeds((err,resultTweeds)=>{
-        //     if( err ){
-        //         response.status(500).send('Error');
-        //     } else {
-                 //
-                const userName = req.cookies;
-                db.freeL.findUser(userName, (err,result)=>{
-                    if( err ){
-                        response.status(500).send('Error');
-                    } else {
-                        const userDetails = result.rows[0];
+        const userName = req.cookies;
+        db.freeL.findUser(userName, (err,result)=>{
+            if( err ){
+                response.status(500).send('Error');
+            } else {
+                const userDetails = result.rows[0];
 
-                        db.freeL.viewAllExcept(req.cookies.userId, (err, result_OtherUsers)=>{
-                            // console.log('OTHER USERSSSS');
-                            // console.log(result_OtherUsers.rows);
-                            let resultTweeds = null;
+                db.freeL.viewAllExcept(req.cookies.username, (err, result_OtherUsers)=>{
+                // console.log('OTHER USERSSSS');
+                // console.log(result_OtherUsers.rows);
+                let resultTweeds = null;
 
-                            const otherUsers = result_OtherUsers.rows;
+                const otherUsers = result_OtherUsers.rows;
 
-                            const data = {userDetails, resultTweeds , otherUsers}
-                            res.render('home/home', {data});
-                        })
-                    }
+                const data = {userDetails, resultTweeds , otherUsers};
+                res.render('home/home', {data});
                 })
-            // }
-        // });
+            }
+        })
     };
 
     let add_home = (req,res) => {
@@ -118,9 +111,4 @@ module.exports = (db) => {
     add: add_home,
     followOthers: follow_other_users,
   };
-}
-
-let cookieChecker = (reqCookie)=>{
-    console.log('INSIDE THE COOKIE MONSTER!!!')
-    console.log(reqCookie);
 }

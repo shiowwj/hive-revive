@@ -3,6 +3,12 @@ const sha256 = require('js-sha256');
 const SALT = 'winter'; // cannot change
 const SESHSALT = 'summer';
 
+  /**
+   * ===========================================
+   * Controller logic
+   * ===========================================
+   */
+
 module.exports = (db) => {
 
     let profileView = (req,res)=>{
@@ -12,8 +18,8 @@ module.exports = (db) => {
                 if( err ){
                     res.send('Error!');
                 } else {
-                    console.log('VIEWWWWINGGGGG');
-                    console.log(result.rows[0]);
+                    // console.log('VIEWWWWINGGGGG');
+                    // console.log(result.rows[0]);
                     const data = result.rows[0];
 
                     res.render('profile/profile', {data})
@@ -26,13 +32,14 @@ module.exports = (db) => {
 
     let profileEditForm = (req,res)=>{
         const checkSessionId = sha256 (SALT + SESHSALT + req.cookies.username);
+        //NEED TO AUTHENTICATE!!!
         if(checkSessionId == req.cookies.sessionId){
             db.freeL.findUser(req.params, (err,result)=>{
                 if( err ){
                     res.send('Error!');
                 } else {
-                    console.log('EDIT VIEWWWINGGG');
-                    console.log(result.rows[0]);
+                    // console.log('EDIT VIEWWWINGGG');
+                    // console.log(result.rows[0]);
                     const data = result.rows[0];
 
                     res.render('profile/edit', {data})
@@ -46,8 +53,8 @@ module.exports = (db) => {
     let editCallback = (req,res)=>{
 
         db.freeL.findUser(req.params, (err,result)=>{
-            console.log('IN EDDITTTT CONTROLLERRR')
-            console.log(req.body);
+            // console.log('IN EDDITTTT CONTROLLERRR')
+            // console.log(req.body);
             const latestData = req.body;
             if( err ){
                     res.send('Error!');
@@ -55,7 +62,7 @@ module.exports = (db) => {
                 const userId = result.rows[0].id;
                 const data = { userId, latestData};
 
-                console.log(data);
+                // console.log(data);
                 db.freeL.edit(data, (err, result)=>{
                     if( err ){
                         res.send('Error!');
@@ -64,8 +71,8 @@ module.exports = (db) => {
                             if( err ){
                                 res.send('Error!');
                             } else {
-                                console.log('VIEWWWWINGGGGG');
-                                console.log(result.rows[0]);
+                                // console.log('VIEWWWWINGGGGG');
+                                // console.log(result.rows[0]);
                                 const data = result.rows[0];
                                 res.render('profile/profile', {data})
                             }
@@ -75,12 +82,6 @@ module.exports = (db) => {
             }
         })
     }
-
-  /**
-   * ===========================================
-   * Controller logic
-   * ===========================================
-   */
 
 
   /**

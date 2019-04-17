@@ -39,24 +39,18 @@ module.exports = (dbPool) => {
 
         dbPool.query(queryInsert, valuesInsert, (err, resultInsert) => {
             if( err ){
-                console.log('1');
+                // console.log('1');
                 callback(err,null)
             } else {
-                console.log('2');
+                // console.log('2');
                 callback(null,resultInsert);
             }
         });
-    }
+    };
 
     let editUser = (dataIn,callback)=>{
-        console.log('MODELLLL EDIT USER');
-        console.log(dataIn);
-
-        console.log('USER ID');
-        console.log(dataIn.userId);
-
-        console.log('THINGS TO UPDATE');
-        console.log(dataIn.latestData.type)
+        // console.log('MODELLLL EDIT USER');
+        // console.log(dataIn.latestData.type)
 
         let timeCreated = currentDateAndTime();
 
@@ -73,14 +67,14 @@ module.exports = (dbPool) => {
 
         dbPool.query(queryEdit, (err, resultEdit) => {
             if( err ){
-                console.log('1');
+                // console.log('1');
                 callback(err,null)
             } else {
-                console.log('2');
+                // console.log('2');
                 callback(null, resultEdit);
             }
         });
-    }
+    };
 
     let findUser = (dataIn, callback)=>{
 
@@ -90,8 +84,8 @@ module.exports = (dbPool) => {
         let query = `SELECT * FROM users WHERE username='${dataIn.username}'`;
 
         dbPool.query( query, (err,r)=>{
-            console.log('FINDDDIDNGGGGG');
-            console.log(r);
+            // console.log('FINDDDIDNGGGGG');
+            // console.log(r);
             if(err){ // error in query
                 callback(err,null);
             } else {
@@ -131,9 +125,11 @@ module.exports = (dbPool) => {
 
     let viewAllUsersExceptCurrent = (dataIn,callback)=>{
 
-        const query = `SELECT id,username FROM users WHERE id > 0
+        // console.log('INSIDE MODEL VIEW ALL EXCEPT', dataIn)
+
+        const query = `SELECT id,username, interest, profile_pic_url FROM users WHERE id > 0
                        EXCEPT
-                       SELECT id,username FROM users WHERE id = ${dataIn}`
+                       SELECT id,username, interest, profile_pic_url FROM users WHERE username = '${dataIn}'`
 
         dbPool.query(query, (err,r)=>{
             // console.log('DONE QUERRRRRYYY USERS');
@@ -146,6 +142,9 @@ module.exports = (dbPool) => {
         })
     };
 
+    let viewBasedOnType = (dataIn, callback) =>{
+
+    };
 
 
 
@@ -155,7 +154,7 @@ module.exports = (dbPool) => {
     add: addNewUser,
     check: checkUser,
     findUser: findUser,
-    view: viewSingleUser,
+    viewSingle: viewSingleUser,
     viewAllExcept : viewAllUsersExceptCurrent,
     edit: editUser,
   };

@@ -23,60 +23,39 @@ module.exports = (db) => {
             if( err ){ //if err returns true
                 res.send('Error!');
             } else { // need to check results
-                console.log('stuffffff');
-                console.log(result);
+                // console.log('stuffffff');
+                // console.log(result);
                 if(result == null){//user does not exist,
                     res.render('login/fail');
                 } else if (result.rows[0].username == req.body.username && result.rows[0].password == req.body.password){ //password and username matches database entry -- works
-                    // to go to home page... it needs to userid cookies, tweeds data
 
-                    res.cookie('userId', result.rows[0].id);
-                    res.cookie('username', result.rows[0].username);
-                    res.cookie('sessionId' , loginSessionId);
-
-                    // const data = {userDetails, resultTweeds};
-
-                     //first time login set userDetails variables to pass
-                        const userDetails = {userId: result.rows[0].id,
-                                             username: result.rows[0].username,
-                                             sessionId: loginSessionId,
-                                             profile_desc: result.rows[0].profile_desc,
-                                             interest: result.rows[0].interest,
-                                             location: result.rows[0].location,
-                                             profile_pic_url: result.rows[0].profile_pic_url,
-                                             created_at: result.rows[0].created_at,
-                                             type: result.rows[0].type,
-                                            };
-                    const data = {userDetails};
-
-                    res.render('home/home', {data});
-
-                    /*
-                    db.tweeds.allTweeds((err,resultTweeds)=>{
-                    if( err ){
-                        response.status(500).send('Error');
-                    } else {
-                        //first time login set userDetails variables to pass
-                        const userDetails = {userId: result.rows[0].id,
-                                             username: result.rows[0].username,
-                                             sessionId: loginSessionId,
-                                             profile_desc: result.rows[0].profile_desc,
-                                             interest: result.rows[0].interest,
-                                             location: result.rows[0].location,
-                                             profile_pic_url: result.rows[0].profile_pic_url,
-                                             created_at: result.rows[0].created_at,
-                                             type: result.rows[0].type,
-                                            };
-                        // Assign coookies
-                        res.cookie('userId', result.rows[0].id);
+                    // updates cookies, search for other users.
+                    db.freeL.viewAllExcept(req.body.username, (err, result_OtherUsers)=>{
+                            // console.log('OTHER USERSSSS');
+                            // console.log(result_OtherUsers.rows);
                         res.cookie('username', result.rows[0].username);
+                        res.cookie('userId', result.rows[0].id);
                         res.cookie('sessionId' , loginSessionId);
+                        res.cookie('type', result.rows[0].type);
 
-                        const data = {userDetails, resultTweeds}
+                        let resultTweeds = null;
+
+                        const otherUsers = result_OtherUsers.rows;
+
+                        const userDetails = {userId: result.rows[0].id,
+                                             username: result.rows[0].username,
+                                             sessionId: loginSessionId,
+                                             profile_desc: result.rows[0].profile_desc,
+                                             interest: result.rows[0].interest,
+                                             location: result.rows[0].location,
+                                             profile_pic_url: result.rows[0].profile_pic_url,
+                                             created_at: result.rows[0].created_at,
+                                             type: result.rows[0].type,
+                                            };
+
+                        const data = {userDetails, resultTweeds , otherUsers}
                         res.render('home/home', {data});
-                    }
-                });
-                    */
+                        })
                 } else { // password and user name wrong
                     res.render('login/fail');
                 }
@@ -95,7 +74,6 @@ module.exports = (db) => {
     let registerSuccess = (req,res) => {
 
         // check if username taken
-
         let enteredUser = req.body.username;
 
         req.body.password = sha256( SALT + req.body.password );
@@ -113,43 +91,18 @@ module.exports = (db) => {
                     db.freeL.add(req.body, (err, resultAdd)=>{
                         // console.log('ADDDED');// ADD ACCOUNT DETAILS
                         // console.log(resultAdd)
-                        //send cookies
-                        const loginSessionId = sha256( SALT + SESHSALT + req.body.username);
 
+                        const loginSessionId = sha256( SALT + SESHSALT + req.body.username);
+                        //send cookies
                         res.cookie('userId', resultAdd.rows[0].id);
                         res.cookie('username', resultAdd.rows[0].username);
                         res.cookie('sessionId' , loginSessionId);
+                        res.cookie('type', result.rows[0].type);
                         res.render('login/success', {resultAdd});
                     })
                 }
             }
         })
-
-        /*
-
-
-        console.log('ADDDDD USERRR')
-        console.log(req.body);
-        //prepares hash password for model js
-        req.body.password = sha256( SALT + req.body.password );
-        db.users.add(req.body, (err,singleUser)=>{
-            if(err){
-                res.send('Error!')
-            }else{
-                if(singleUser == null){
-                    res.send('User name taken');
-                } else {
-                    //sends cookie
-
-                    console.log(singleUser);
-                    res.cookie('userId', singleUser.rows[0].id);
-                    res.cookie('username', singleUser.rows[0].username);
-
-                    res.render('login/success', {singleUser});
-                }
-            }
-        })
-        */
     };
 
 

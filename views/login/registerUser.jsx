@@ -57,7 +57,7 @@ class SignUpForm extends React.Component{
                         </div>
                          <div class="mt-3">
                             <label>Interest</label>
-                            <textarea class="form-control" rows="2" name="Interest" required></textarea>
+                            <textarea class="form-control" rows="2" name="interest" required></textarea>
                         </div>
                             <input type="text" class="form-control invisible" name="type" value="freelance"/>
                         <div class="">
