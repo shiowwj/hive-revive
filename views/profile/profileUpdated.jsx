@@ -2,12 +2,14 @@ var React = require("react");
 
 class Head extends React.Component{
     render() {
+        console.log('ATTT HEADER????');
+        console.log(this.props.data)
+        const userName = this.props.data.username;
         return(
             <html>
                 <head>
-                <meta name="viewport" content="initial-scale=1.0"/>
                 <meta charSet="utf-8"/>
-                <title>Hive: Rev</title>
+                <title>{userName} </title>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -32,13 +34,12 @@ class NavBar extends React.Component{
     }
 }
 
+/*
 class LeftSidebar extends React.Component{
     render(){
 
         // console.log('VIEW LEFTSIDE!!!')
         // console.log(this.props.data);
-        let userName = this.props.data.userDetails.username;
-        let formAction = '/profile/'+ userName;
 
         return(
             <aside>
@@ -46,19 +47,14 @@ class LeftSidebar extends React.Component{
                     <div class="profile-img">
                         <img class="profile-photo" src={this.props.data.userDetails.profile_pic_url}/>
                     </div>
-                    <h3>Location: {this.props.data.userDetails.location}</h3>
                     <h4>User profile: {this.props.data.userDetails.username}</h4>
                     <h3>{this.props.data.userDetails.profile_desc}</h3>
-                    <h3>{this.props.data.userDetails.interest}</h3>
-                    <div class="form-button text-right">
-                        <a href={formAction} class="btn btn-primary btn-lg active" role="button" aria-pressed="true">View Profile</a>
-                    </div>
-
                 </figure>
             </aside>
         )
     }
 }
+
 
 class RightSidebar extends React.Component{
     render(){
@@ -99,11 +95,11 @@ class RightSidebar extends React.Component{
     }
 }
 
+
 class ViewTweeds extends React.Component{
     render(){
         // console.log('VIEW TWEEDSSS!!!')
         // console.log(this.props);
-        /*
         const tweedsAll = this.props.data.resultTweeds;
         let outList;
         if(tweedsAll == undefined){
@@ -126,51 +122,44 @@ class ViewTweeds extends React.Component{
                     </div>
             })
         }
-        */
-
         return(
             <html>
-               <div id="map"></div>
-
+                {outList}
             </html>
         )
     }
 }
+*/
 
-class Home extends React.Component {
+class ProfileUpdated extends React.Component {
     render(){
 
-        // console.log('home JSX');
-        // console.log(this.props.data);
-        // // let userId =
-        // let formAddPage = `/`
+        console.log('PROFILEEEE JSX');
+        console.log(this.props.data);
+        // let userId =
+
         return (
             <html>
-                <Head/>
+                <Head data={this.props.data}/>
                 <body>
-
                     <main>
-
                         <div class="container">
                             <NavBar/>
                             <div class="row">
-                                <div class="col-2">
-                                    <LeftSidebar data={this.props.data}/>
+                            <h2>Username: {this.props.data.username}</h2>
+                                <div class="col-3">
+                                    <img src={this.props.data.profile_pic_url}/>
+                                    <h4>Interest: {this.props.data.interest}</h4>
+                                    <h4>Location: {this.props.data.location}</h4>
+                                    <h4>Looking For:{this.props.data.type}</h4>
+                                    <h4>Headline: {this.props.data.profile_desc}</h4>
+                                    <h2><strong>button to edit page</strong></h2>
                                 </div>
-                                <div class="col-8">
-                                    <form class="mt-3 mb-4" method="POST" action="/addtweeds">
-                                        <div class="form-group">
-                                            <label>LOCATION INDICATOR</label>
-                                            <textarea class="form-control" rows="1" name="*******SEARCH FOR SOMETHING******"></textarea>
-                                        </div>
-                                        <div class="form-button text-right">
-                                            <input type="submit" class="btn btn-outline-primary border border-primary btn-lg " value="SEARCH"/>
-                                        </div>
-                                    </form>
-                                    <ViewTweeds data={this.props.data}/>
+                                <div class="col-6">
+
                                 </div>
-                                <div class="col-2">
-                                    <RightSidebar data={this.props.data}/>
+                                <div class="col-3">
+
                                 </div>
                             </div>
                         </div>
@@ -181,4 +170,4 @@ class Home extends React.Component {
     }
 }
 
-module.exports = Home;
+module.exports = ProfileUpdated;

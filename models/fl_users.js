@@ -26,7 +26,7 @@ module.exports = (dbPool) => {
     let addNewUser = (dataIn, callback) => {
 
 
-        console.log('CONTROL ADD USER');
+        console.log('MODELLL  ADD USER');
         console.log(dataIn);
 
         let timeCreated = currentDateAndTime();
@@ -48,6 +48,40 @@ module.exports = (dbPool) => {
         });
     }
 
+    let editUser = (dataIn,callback)=>{
+        console.log('MODELLLL EDIT USER');
+        console.log(dataIn);
+
+        console.log('USER ID');
+        console.log(dataIn.userId);
+
+        console.log('THINGS TO UPDATE');
+        console.log(dataIn.latestData.type)
+
+        let timeCreated = currentDateAndTime();
+
+        let queryEdit = `UPDATE users
+                           SET
+                           username = '${dataIn.latestData.username}',
+                           profile_desc = '${dataIn.latestData.profile_desc}',
+                           interest = '${dataIn.latestData.interest}',
+                           location = '${dataIn.latestData.location}',
+                           profile_pic_url = '${dataIn.latestData.profile_pic_url}',
+                           type = '${dataIn.latestData.type}'
+                           WHERE
+                           id = ${dataIn.userId};`
+
+        dbPool.query(queryEdit, (err, resultEdit) => {
+            if( err ){
+                console.log('1');
+                callback(err,null)
+            } else {
+                console.log('2');
+                callback(null, resultEdit);
+            }
+        });
+    }
+
     let findUser = (dataIn, callback)=>{
 
         // console.log('SUTTFIN INSIDE');
@@ -56,8 +90,8 @@ module.exports = (dbPool) => {
         let query = `SELECT * FROM users WHERE username='${dataIn.username}'`;
 
         dbPool.query( query, (err,r)=>{
-            // console.log('FINDDDIDNGGGGG');
-            // console.log(r);
+            console.log('FINDDDIDNGGGGG');
+            console.log(r);
             if(err){ // error in query
                 callback(err,null);
             } else {
@@ -123,6 +157,7 @@ module.exports = (dbPool) => {
     findUser: findUser,
     view: viewSingleUser,
     viewAllExcept : viewAllUsersExceptCurrent,
+    edit: editUser,
   };
 }
 

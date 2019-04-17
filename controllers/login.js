@@ -35,6 +35,18 @@ module.exports = (db) => {
                     res.cookie('sessionId' , loginSessionId);
 
                     // const data = {userDetails, resultTweeds};
+
+                     //first time login set userDetails variables to pass
+                        const userDetails = {userId: result.rows[0].id,
+                                             username: result.rows[0].username,
+                                             sessionId: loginSessionId,
+                                             profile_desc: result.rows[0].profile_desc,
+                                             interest: result.rows[0].interest,
+                                             location: result.rows[0].location,
+                                             profile_pic_url: result.rows[0].profile_pic_url,
+                                             created_at: result.rows[0].created_at,
+                                             type: result.rows[0].type,
+                                            };
                     const data = {userDetails};
 
                     res.render('home/home', {data});

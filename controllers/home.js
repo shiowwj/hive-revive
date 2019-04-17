@@ -14,10 +14,10 @@ module.exports = (db) => {
 
     let homeView = (req, res) => {
 
-        db.tweeds.allTweeds((err,resultTweeds)=>{
-            if( err ){
-                response.status(500).send('Error');
-            } else {
+        // db.tweeds.allTweeds((err,resultTweeds)=>{
+        //     if( err ){
+        //         response.status(500).send('Error');
+        //     } else {
                  //
                 const userName = req.cookies;
                 db.freeL.findUser(userName, (err,result)=>{
@@ -29,6 +29,8 @@ module.exports = (db) => {
                         db.freeL.viewAllExcept(req.cookies.userId, (err, result_OtherUsers)=>{
                             // console.log('OTHER USERSSSS');
                             // console.log(result_OtherUsers.rows);
+                            let resultTweeds = null;
+
                             const otherUsers = result_OtherUsers.rows;
 
                             const data = {userDetails, resultTweeds , otherUsers}
@@ -36,8 +38,8 @@ module.exports = (db) => {
                         })
                     }
                 })
-            }
-        });
+            // }
+        // });
     };
 
     let add_home = (req,res) => {
