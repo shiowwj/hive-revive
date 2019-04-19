@@ -15,6 +15,17 @@ body{
   border: 2px solid #282923;
 }
 
+.card-img{
+	/*float: left;*/
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
+
+	/*height: 100px;
+	width: 100%;*/
+  /*border: 2px solid #282923;*/
+}
+
 .side-profile-photo{
 
 	border-radius: 50%;
@@ -23,16 +34,45 @@ body{
   border: 2px solid #282923;
 }
 
-.dash-board-right {
+.dash-board {
 	background-color: #FFFFFF;
 	border: 1px solid #FFFFFF;
 	box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px 0px !important;
-	padding: 10px;
+	/*padding: 10px;*/
+	margin: 10px;
+	padding-left: 35px;
+	padding-right: 35px;
 }
 
 .dash-board-left {
 	background-color: #FFFFFF;
 	border: 1px solid #FFFFFF;
 	box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px 0px !important;
+	/*padding: 10px;*/
+	margin: 10px;
+}
+
+.navbar{
+	background-color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+	box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px 0px !important;
 	padding: 10px;
+}
+
+
+
+.card{
+	width: 250px;
+	height: 300px;
+	border: 1px solid #FFFFFF;
+	box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px 0px !important;
+	/*border-radius: 30px;*/
+
+	margin-right: 4px;
+	margin-bottom: 20px;
+	cursor: grab;
+}
+
+#search-bar{
+	width: 800px;
 }

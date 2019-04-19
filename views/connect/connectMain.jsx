@@ -7,11 +7,11 @@ class Head extends React.Component{
                 <head>
                 <meta name="viewport" content="initial-scale=1.0"/>
                 <meta charSet="utf-8"/>
-                <title>One Corner</title>
+                <title>Go One Corner</title>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-                <link rel="stylesheet" type="text/css" href="reset.css"/>
+                <link rel="stylesheet" href="reset.css"/>
                 <link rel="stylesheet" href="/style.css"/>
             </head>
             </html>
@@ -41,47 +41,23 @@ class NavBar extends React.Component{
     }
 }
 
-class LeftSidebar extends React.Component{
+class Comments extends React.Component{
     render(){
 
-        let userName = this.props.data.username;
-        let formAction = '/profile/'+ userName +"/edit";
-
-        return(
-            <html>
-                <div class="col">
-                    <a class="navbar-brand col" href="/home">
-                        <span class="glyphicon glyphicon-home"> Home</span>
-                    </a>
-                    <a class="navbar-brand col" href={formAction}>
-                        <span class="glyphicon glyphicon-wrench"> Edit</span>
-                    </a>
-                </div>
-            </html>
-        )
-    }
-}
-
-class View extends React.Component{
-    render(){
-        console.log('VIEWWW PROFILE SECTION');
+        console.log('COMMENTS AREA');
         console.log(this.props.data);
 
-
         return(
             <html>
-                <div class="col">
-
-                </div>
             </html>
         )
     }
 }
 
-class Profile extends React.Component {
+class Connect extends React.Component {
     render(){
 
-        console.log('PROFILEEEE JSX');
+        console.log('CONNECTTT JSX');
         console.log(this.props.data);
 
         return (
@@ -91,11 +67,11 @@ class Profile extends React.Component {
                     <NavBar/>
                     <div>
                         <div class="row">
-                            <div class="col-lg-2 col-md-12 dash-board-left">
-                                <LeftSidebar data={this.props.data}/>
-                            </div>
                             <div class="col-lg-10 col-md-12 dash-board">
-                                <View data={this.props.data}/>
+                                <Comments data={this.props.data.comments}/>
+                            </div>
+                            <div class="col-lg-2 col-md-12 dash-board-right">
+
                             </div>
                         </div>
 
@@ -107,4 +83,4 @@ class Profile extends React.Component {
     }
 }
 
-module.exports = Profile;
+module.exports = Connect;

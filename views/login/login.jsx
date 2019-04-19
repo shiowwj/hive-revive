@@ -6,7 +6,7 @@ class Head extends React.Component{
             <html>
                 <head>
                 <meta charSet="utf-8"/>
-                <title>Hive: Rev</title>
+                <title>One Corner</title>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -63,18 +63,19 @@ class SignUp extends React.Component{
         return (
             <html>
                 <div class="p-3 m-5">
-                    <h2>New?</h2>
-
-                        <form method="GET" action="/register/user">
+                    <h2 class="text-center">New?</h2>
+                        <div class="row">
+                        <form method="GET" action="/register/user" class="col">
                             <div class="row justify-content-center">
-                                <button type="submit" class="btn-success border border-primary btn-lg mt-3">Heartland Kia?</button>
+                                <button type="submit" class="btn-success border border-primary btn-lg mt-3">Kia?</button>
                             </div>
                         </form>
-                        <form method="GET" action="/register/entity">
+                        <form method="GET" action="/register/entity" class="col">
                             <div class="row justify-content-center">
-                                <button type="submit" class="btn-success border border-primary btn-lg mt-3">Heartland Ah Pek?</button>
+                                <button type="submit" class="btn-success border border-primary btn-lg mt-3">Ah Pek?</button>
                             </div>
                         </form>
+                    </div>
                 </div>
             </html>
         )

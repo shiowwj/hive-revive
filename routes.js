@@ -16,6 +16,7 @@ module.exports = (app, allModels) => {
     const loginControllerCallbacks = require('./controllers/login')(allModels);
     const homeControllerCallbacks = require('./controllers/home')(allModels);
     const viewProfileControllerCallbacks = require('./controllers/profile')(allModels);
+    const connectControllerCallbacks = require('./controllers/connect')(allModels);
 
 
 
@@ -27,7 +28,7 @@ module.exports = (app, allModels) => {
      //NEW USERS FORM
     app.get('/register/user', loginControllerCallbacks.registerU);
     app.get('/register/entity', loginControllerCallbacks.registerE);
-    //ADD NEW USERS REQUEST
+    //ADDS NEW USER
     app.post('/register/user', loginControllerCallbacks.successR);
 
 
@@ -41,12 +42,15 @@ module.exports = (app, allModels) => {
 
     //delete user data
 
+    //VIEW OTHER USER
+    app.get('/connect/:username', connectControllerCallbacks.view);
 
     //HOME PAGE
     app.get('/home', homeControllerCallbacks.home);
 
 
     //SORTING
+    app.get('/sort/', homeControllerCallbacks.sort)
 
 
 };

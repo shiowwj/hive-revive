@@ -34,103 +34,6 @@ class NavBar extends React.Component{
     }
 }
 
-/*
-class LeftSidebar extends React.Component{
-    render(){
-
-        // console.log('VIEW LEFTSIDE!!!')
-        // console.log(this.props.data);
-
-        return(
-            <aside>
-                <figure>
-                    <div class="profile-img">
-                        <img class="profile-photo" src={this.props.data.userDetails.profile_pic_url}/>
-                    </div>
-                    <h4>User profile: {this.props.data.userDetails.username}</h4>
-                    <h3>{this.props.data.userDetails.profile_desc}</h3>
-                </figure>
-            </aside>
-        )
-    }
-}
-
-
-class RightSidebar extends React.Component{
-    render(){
-
-        console.log('RIGHTT SIDEE');
-        console.log(this.props.data.otherUsers);
-        const otherUsers = this.props.data.otherUsers;
-        let outList;
-        if(otherUsers == undefined){
-            outList = "No one really uses Tweeder....";
-        } else {
-            outList = otherUsers.map((item,index) =>{
-                let formAction = "/follow/" + item.id;
-                return  <div class="other-users-container">
-                            <div class="d-flex flex-row justify-content-between">
-                                <div>
-                                    <p class="text text-right">{item.username}</p>
-                                </div>
-                                <div>
-                                    <form method="POST" action={formAction}>
-                                    <input type="submit" class="btn btn-default" value="Follow"/>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-            })
-        }
-
-        return(
-            <aside>
-                <figure>
-                    <h4>Other Users</h4>
-                    {outList}
-                </figure>
-            </aside>
-        )
-    }
-}
-
-
-class ViewTweeds extends React.Component{
-    render(){
-        // console.log('VIEW TWEEDSSS!!!')
-        // console.log(this.props);
-        const tweedsAll = this.props.data.resultTweeds;
-        let outList;
-        if(tweedsAll == undefined){
-            outList = 'List of Community Spaces';
-        } else {
-
-            outList = tweedsAll.map((item,index)=>{
-            return  <div class="content tweeds-box">
-                        <div class="text-container">
-                            <div class="d-flex flex-row justify-content-between">
-                                <div>
-                                    <p class="text text-left">{item.tweeds}</p>
-                                </div>
-                                <div>
-                                    <a href="/tweeds/edit" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a href="/tweeds/delete" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            })
-        }
-        return(
-            <html>
-                {outList}
-            </html>
-        )
-    }
-}
-*/
-
 class Edit extends React.Component {
     render(){
 
@@ -163,7 +66,7 @@ class Edit extends React.Component {
                                         </div>
                                          <div class="mt-3">
                                             <label>Edit Interest</label>
-                                            <textarea class="form-control" rows="2" name="Interest" value={this.props.data.interest}></textarea>
+                                            <textarea class="form-control" rows="2" name="interest" value={this.props.data.interest}></textarea>
                                         </div>
                                         <div class="mt-3">
                                             <label>Change Type</label>

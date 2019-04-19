@@ -7,7 +7,7 @@ module.exports = (db) => {
 
 
   /**
-   * ===========================================
+   * =============users=============================
    * Controller logic
    * ===========================================
    */
@@ -15,92 +15,28 @@ module.exports = (db) => {
     let homeView = (req, res) => {
 
         const userName = req.cookies;
-        db.freeL.findUser(userName, (err,result)=>{
-            if( err ){
-                response.status(500).send('Error');
-            } else {
-                const userDetails = result.rows[0];
 
-                db.freeL.viewAllExcept(req.cookies.username, (err, result_OtherUsers)=>{
-                // console.log('OTHER USERSSSS');
-                // console.log(result_OtherUsers.rows);
-                let resultTweeds = null;
+        const findUser = (userDetails) => {
 
-                const otherUsers = result_OtherUsers.rows;
-
-                const data = {userDetails, resultTweeds , otherUsers};
-                res.render('home/home', {data});
-                })
+            const allExcept = (otherUsers) => {
+                const data = { userDetails , otherUsers };
+                res.render('home/home', {data})
             }
-        })
-    };
 
-    let add_home = (req,res) => {
-
-        const checkSessionId = sha256 (SALT + SESHSALT + req.cookies.username); // check if user is same session
-        if(checkSessionId == req.cookies.sessionId){
-
-            const dataIn = { twds: req.body , userId: req.cookies.userId}; // add tweet. based on which user.
-
-            db.tweeds.addTweeds(dataIn, (err,result)=>{
-                if( err ){
-                    response.status(500).send('Error');
-                } else {
-                    // console.log('TWEED RESULTS');
-                    // console.log(result);
-                    db.tweeds.allTweeds((err,resultTweeds)=>{
-                        if( err ){
-                            response.status(500).send('Error');
-                        } else {
-                            const userName = req.cookies;
-                            db.fl_users.findUser(userName, (err,result)=>{
-                                if( err ){
-                                    response.status(500).send('Error');
-                                } else {
-                                    const userDetails = result.rows[0];
-                                    db.freeL.viewAllExcept(req.cookies.userId, (err, result_OtherUsers)=>{
-                                        // console.log('OTHER USERSSSS');
-                                        // console.log(result_OtherUsers.rows);
-                                        const otherUsers = result_OtherUsers.rows;
-
-                                        const data = {userDetails, resultTweeds , otherUsers}
-                                        res.render('home/home', {data});
-                                    })
-                                }
-                            })
-                        }
-                    });
-                }
-            });
-        } else {
-            res.send('login in again'); /// put a redirect page to login again
+            db.users.viewAllExcept(userName, allExcept);
         }
+
+        db.users.findUser(userName , findUser);
+
     };
 
-    let follow_other_users = (req,res)=>{
-        const checkSessionId = sha256 (SALT + SESHSALT + req.cookies.username); // check if user is same session
-        if(checkSessionId == req.cookies.sessionId){
+    //not in use
+    let sortBy = (req,res) =>{
+        console.log("SORT STUFFF");
+        console.log(req.query)
 
-            db.tweeds.allTweeds((err,resultTweeds)=>{ // list all tweeds
-                if( err ){
-                    response.status(500).send('Error');
-                } else {
-                    const userName = req.cookies;
-                    db.freeL.findUser(userName, (err,result)=>{
-                        if( err ){
-                            response.status(500).send('Error');
-                        } else {
-                            const userDetails = result.rows[0];
-                            const data = {userDetails, resultTweeds}
-                            res.render('home/home', {data});
-                        }
-                    })
-                }
-            });
-        } else {
-            res.send('login in again'); /// put a redirect page to login again
-        }
-    };
+        res.send("HELLO");
+    }
   /**
    * ===========================================
    * Export controller functions as a module
@@ -108,7 +44,6 @@ module.exports = (db) => {
    */
   return {
     home: homeView,
-    add: add_home,
-    followOthers: follow_other_users,
+    sort: sortBy,
   };
 }

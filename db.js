@@ -61,12 +61,12 @@ pool.on('error', function (err) {
  * ===================================================
  */
 
+const usersModelsFunction = require('./models/users');
+const usersModelsObject = usersModelsFunction( pool );
 
-const allBizownerModelsFunction = require('./models/bo_users');
-const allFreeLModelsFunction = require('./models/fl_users');
+const commentsModelsFunction = require('./models/comments_userid');
+const commentsModelsObject = commentsModelsFunction( pool );
 
-const ownerModelsObject = allBizownerModelsFunction( pool );
-const freeLModelsObject = allFreeLModelsFunction( pool );
 
 
 
@@ -97,7 +97,7 @@ module.exports = {
    * ADD APP MODELS HERE
    */
 
-  // users: userModelsObject,
-  owners: ownerModelsObject,
-  freeL: freeLModelsObject,
+  users: usersModelsObject,
+  comments: commentsModelsObject,
+
 };

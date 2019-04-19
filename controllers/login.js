@@ -17,57 +17,55 @@ module.exports = (db) => {
     };
 
     let loginSucess = (req,res) => {
+
         req.body.password = sha256( SALT + req.body.password );
         const loginSessionId = sha256( SALT + SESHSALT + req.body.username);
-        db.freeL.findUser(req.body, (err,result)=>{
-            if( err ){ //if err returns true
-                res.send('Error!');
-            } else { // need to check results
-                // console.log('stuffffff');
-                // console.log(result);
-                if(result == null){//user does not exist,
-                    res.render('login/fail');
-                } else if (result.rows[0].username == req.body.username && result.rows[0].password == req.body.password){ //password and username matches database entry -- works
 
-                    // updates cookies, search for other users.
-                    db.freeL.viewAllExcept(req.body.username, (err, result_OtherUsers)=>{
-                            // console.log('OTHER USERSSSS');
-                            // console.log(result_OtherUsers.rows);
-                        res.cookie('username', result.rows[0].username);
-                        res.cookie('userId', result.rows[0].id);
-                        res.cookie('sessionId' , loginSessionId);
-                        res.cookie('type', result.rows[0].type);
+        const findUser = (result) =>{
 
-                        let resultTweeds = null;
+            if(result == null){
 
-                        const otherUsers = result_OtherUsers.rows;
+                res.render('login/fail');
+            } else if(result.username == req.body.username && result.password == req.body.password){
 
-                        const userDetails = {userId: result.rows[0].id,
-                                             username: result.rows[0].username,
-                                             sessionId: loginSessionId,
-                                             profile_desc: result.rows[0].profile_desc,
-                                             interest: result.rows[0].interest,
-                                             location: result.rows[0].location,
-                                             profile_pic_url: result.rows[0].profile_pic_url,
-                                             created_at: result.rows[0].created_at,
-                                             type: result.rows[0].type,
-                                            };
+                const allExcept = ( otherUsers ) => {
 
-                        const data = {userDetails, resultTweeds , otherUsers}
-                        res.render('home/home', {data});
-                        })
-                } else { // password and user name wrong
-                    res.render('login/fail');
+                    res.cookie('username', result.username);
+                    res.cookie('userId', result.id);
+                    res.cookie('sessionId' , loginSessionId);
+                    res.cookie('type', result.type);
+
+                    const userDetails = {userId: result.id,
+                                         username: result.username,
+                                         sessionId: loginSessionId,
+                                         profile_desc: result.profile_desc,
+                                         interest: result.interest,
+                                         location: result.location,
+                                         profile_pic_url: result.profile_pic_url,
+                                         created_at: result.created_at,
+                                         type: result.type,
+                                         };
+
+                    const data = { userDetails, otherUsers};
+
+                    res.render('home/home', {data});
                 }
+
+                db.users.viewAllExcept(req.body, allExcept);
+            } else {
+                res.render('login/fail');
             }
-        })
+        }
+        db.users.findUser(req.body, findUser);
     }
 
     let registerStartUser = (req,res) => {
+
         res.render('login/registerUser');
     }
 
     let registerStartEntity = (req,res) => {
+
         res.render('login/registerEntity');
     }
 
@@ -79,30 +77,28 @@ module.exports = (db) => {
         req.body.password = sha256( SALT + req.body.password );
 
         //checks if username taken
-        db.freeL.check(enteredUser, (err, result) =>{
+        let checkIfUsernameTaken = (result) =>{
+            if(result){
 
-            if( err ){
-                res.send('error');
-            } else {
-                if(result == false){
-                    res.send('User Name taken');
-                } else if(result == true){ ///can use the username. create account
+                let addUser = (resultAdd) =>{
 
-                    db.freeL.add(req.body, (err, resultAdd)=>{
-                        // console.log('ADDDED');// ADD ACCOUNT DETAILS
-                        // console.log(resultAdd)
-
-                        const loginSessionId = sha256( SALT + SESHSALT + req.body.username);
-                        //send cookies
-                        res.cookie('userId', resultAdd.rows[0].id);
-                        res.cookie('username', resultAdd.rows[0].username);
-                        res.cookie('sessionId' , loginSessionId);
-                        res.cookie('type', result.rows[0].type);
-                        res.render('login/success', {resultAdd});
-                    })
+                    const loginSessionId = sha256( SALT + SESHSALT + req.body.username);
+                    //send cookies
+                    res.cookie('userId', resultAdd.rows[0].id);
+                    res.cookie('username', resultAdd.rows[0].username);
+                    res.cookie('sessionId' , loginSessionId);
+                    res.cookie('type', resultAdd.rows[0].type);
+                    res.render('login/success', {resultAdd});
                 }
+
+                db.users.add(req.body, addUser);
+
+            }else if (!result) {
+                res.send('User Name taken');
             }
-        })
+        }
+
+        db.users.check( enteredUser, checkIfUsernameTaken );
     };
 
 

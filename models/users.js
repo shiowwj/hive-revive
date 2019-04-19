@@ -10,14 +10,14 @@ module.exports = (dbPool) => {
 
         dbPool.query(queryExist, (err,r)=>{
             if( err ){
-                callback(err,null)
+                console.log( "Error!", err );
             } else {
                 if(r.rows.length === 0 ){
                     //user name can use.
-                    callback(null, true);
+                    callback(true);
                 } else {
                     //user name taken. return null
-                    callback(null, false);
+                    callback(false);
                 }
             }
         })
@@ -25,42 +25,31 @@ module.exports = (dbPool) => {
 
     let addNewUser = (dataIn, callback) => {
 
-
-        console.log('MODELLL  ADD USER');
-        console.log(dataIn);
-
         let timeCreated = currentDateAndTime();
 
         let queryInsert = `INSERT INTO users
                            (username , password , profile_desc , interest , location ,  profile_pic_url , created_at , type )
                            VALUES ( $1, $2, $3, $4, $5, $6, $7, $8)
                            RETURNING *`
+
         let valuesInsert =[dataIn.username, dataIn.password, dataIn.profile_desc, dataIn.interest, dataIn.location, dataIn.profile_pic_url, timeCreated, dataIn.type];
 
         dbPool.query(queryInsert, valuesInsert, (err, resultInsert) => {
             if( err ){
-                console.log('1');
-                callback(err,null)
+                console.log( "Error!", err );
             } else {
                 console.log('2');
-                callback(null,resultInsert);
+                console.log(resultInsert);
+                callback(resultInsert);
             }
         });
-    }
+    };
 
     let editUser = (dataIn,callback)=>{
-        console.log('MODELLLL EDIT USER');
-        console.log(dataIn);
-
-        console.log('USER ID');
-        console.log(dataIn.userId);
-
-        console.log('THINGS TO UPDATE');
-        console.log(dataIn.latestData.type)
 
         let timeCreated = currentDateAndTime();
 
-        let queryEdit = `UPDATE users
+        let queryEdit = `  UPDATE users
                            SET
                            username = '${dataIn.latestData.username}',
                            profile_desc = '${dataIn.latestData.profile_desc}',
@@ -73,79 +62,54 @@ module.exports = (dbPool) => {
 
         dbPool.query(queryEdit, (err, resultEdit) => {
             if( err ){
-                console.log('1');
-                callback(err,null)
+                console.log( "Error!", err );
             } else {
-                console.log('2');
-                callback(null, resultEdit);
+                callback(resultEdit);
             }
         });
-    }
+    };
 
     let findUser = (dataIn, callback)=>{
-
-        // console.log('SUTTFIN INSIDE');
-        // console.log(dataIn);
 
         let query = `SELECT * FROM users WHERE username='${dataIn.username}'`;
 
         dbPool.query( query, (err,r)=>{
-            console.log('FINDDDIDNGGGGG');
-            console.log(r);
+
             if(err){ // error in query
-                callback(err,null);
+                console.log( "Error!", err );
             } else {
                 if(r.rows.length == 0){ //username not found
-                    callback(null,null);
+                    callback( null );
                 } else {
-                    callback(null,r);
+                    const user = r.rows[0];
+                    callback( user );
                 }
             }
         })
     };
 
-    let viewSingleUser = (dataIn,callback)=>{
-        // console.log('1');
-        // console.log(dataIn);
-        let query = `SELECT * FROM users WHERE username='${dataIn}'`;
-
-        dbPool.query(query, (err,r)=>{
-            // console.log('2')
-            // console.log(r);
-            if( err ){
-                // console.log('3')
-                callback(err, null);
-            } else {
-                if( r.rows[0].password == dataIn.password ){
-                    // console.log('3');
-                    // console.log(r);
-                    callback(null, r);
-                } else {
-
-                    //password does not match
-                    callback(err, null);
-                }
-            }
-        });
-    };
-
     let viewAllUsersExceptCurrent = (dataIn,callback)=>{
 
-        const query = `SELECT id,username FROM users WHERE id > 0
+        const query = `SELECT id,username, interest, profile_pic_url, profile_desc, location, type FROM users WHERE id > 0
                        EXCEPT
-                       SELECT id,username FROM users WHERE id = ${dataIn}`
+                       SELECT id,username, interest, profile_pic_url, profile_desc, location, type FROM users WHERE username = '${dataIn.username}'`;
 
         dbPool.query(query, (err,r)=>{
             // console.log('DONE QUERRRRRYYY USERS');
             // console.log(r);
             if( err ){
-                callback(err,null);
+                 console.log( "Error!", err );
             } else {
-                callback(null,r);
+                const allExcept = r.rows
+                callback(allExcept);
             }
         })
     };
 
+    //NOT IN USE
+    let viewBasedOnType = (dataIn, callback) =>{
+
+    };
 
 
 
@@ -155,7 +119,6 @@ module.exports = (dbPool) => {
     add: addNewUser,
     check: checkUser,
     findUser: findUser,
-    view: viewSingleUser,
     viewAllExcept : viewAllUsersExceptCurrent,
     edit: editUser,
   };
