@@ -5,9 +5,9 @@ module.exports = (dbPool) => {
 
 
         //all comments for the  owner_user
-        let allComments = (dataIn, callback) => {
-            console.log('INSIDE QUERYYY')
-            console.log(dataIn);
+        const allComments = (dataIn, callback) => {
+            // console.log('INSIDE QUERYYY')
+            // console.log(dataIn);
             // dataIn should give me the username of the profile page
             let query = `SELECT * FROM comments_userid WHERE owner_username = '${dataIn.username}'`;
 
@@ -22,6 +22,28 @@ module.exports = (dbPool) => {
             })
         };
 
+        const add = (dataIn, callback) => {
+            //ADD DATE CREATED
+            console.log("HOW TO SHAKE IT", dataIn);
+
+            let queryInsert = `INSERT into comments_userid
+                               (comments , comment_from_userid , owner_username)
+                               VALUES ($1, $2, $3)
+                               RETURNING *`;
+
+            let valuesInsert = [dataIn.comment, dataIn.userId, dataIn.profileView];
+
+            dbPool.query(queryInsert, valuesInsert, ( err, resultInsert) => {
+                if( err ){
+                    console.log( "Error!", err );
+                } else {
+                    console.log(resultInsert);
+                    callback(resultInsert);
+                }
+            })
+
+
+        }
 
 
         //usernams of all the user_id commenting
@@ -31,6 +53,7 @@ module.exports = (dbPool) => {
   return {
 
     allComments: allComments,
+    add: add,
   };
 }
 

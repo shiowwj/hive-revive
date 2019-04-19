@@ -15,7 +15,6 @@ type TEXT
 
 CREATE TABLE IF NOT EXISTS comments_userid (
 id SERIAL PRIMARY KEY,
-title TEXT,
 comments TEXT,
 comment_from_userid INTEGER,
 owner_username TEXT

@@ -16,7 +16,7 @@ module.exports = (app, allModels) => {
     const loginControllerCallbacks = require('./controllers/login')(allModels);
     const homeControllerCallbacks = require('./controllers/home')(allModels);
     const viewProfileControllerCallbacks = require('./controllers/profile')(allModels);
-    const connectControllerCallbacks = require('./controllers/connect')(allModels);
+    const contactControllerCallbacks = require('./controllers/makecontact')(allModels);
 
 
 
@@ -43,14 +43,13 @@ module.exports = (app, allModels) => {
     //delete user data
 
     //VIEW OTHER USER
-    app.get('/connect/:username', connectControllerCallbacks.view);
-
+    app.get('/contact/:username', contactControllerCallbacks.view);
+    app.post('/contact/:username', contactControllerCallbacks.addComment)
     //HOME PAGE
     app.get('/home', homeControllerCallbacks.home);
 
 
-    //SORTING
-    app.get('/sort/', homeControllerCallbacks.sort)
+    //SORTINg
 
 
 };

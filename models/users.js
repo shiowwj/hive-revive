@@ -30,7 +30,7 @@ module.exports = (dbPool) => {
         let queryInsert = `INSERT INTO users
                            (username , password , profile_desc , interest , location ,  profile_pic_url , created_at , type )
                            VALUES ( $1, $2, $3, $4, $5, $6, $7, $8)
-                           RETURNING *`
+                           RETURNING *`;
 
         let valuesInsert =[dataIn.username, dataIn.password, dataIn.profile_desc, dataIn.interest, dataIn.location, dataIn.profile_pic_url, timeCreated, dataIn.type];
 
@@ -38,7 +38,7 @@ module.exports = (dbPool) => {
             if( err ){
                 console.log( "Error!", err );
             } else {
-                console.log('2');
+                // console.log('2');
                 console.log(resultInsert);
                 callback(resultInsert);
             }

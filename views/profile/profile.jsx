@@ -71,7 +71,7 @@ class View extends React.Component{
         return(
             <html>
                 <div class="col">
-
+                    DISPLAY PROFILE STUFF
                 </div>
             </html>
         )

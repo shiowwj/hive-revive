@@ -11,7 +11,7 @@ class Head extends React.Component{
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-                <link rel="stylesheet" type="text/css" href="reset.css"/>
+                <link rel="stylesheet" type="text/css" href="/reset.css"/>
                 <link rel="stylesheet" href="/style.css"/>
             </head>
             </html>
@@ -86,7 +86,7 @@ class ViewOthers extends React.Component{
         } else {
 
             outList = usersList.map((item,index)=>{
-                let formAction = `/profile/${item.username}`
+                let formAction = `/contact/${item.username}`
             return    <div class="card">
                             <div class="d-flex flex-column">
                             <div class="profile-img text-center">
@@ -116,8 +116,6 @@ class ViewOthers extends React.Component{
         )
     }
 }
-
-// class sort
 
 class Home extends React.Component {
     render(){
