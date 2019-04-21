@@ -12,6 +12,8 @@ module.exports = (db) => {
    * ===========================================
    */
 
+   //HOME PAGE REQUIRES CURRENT USER AND OTHER USER INFO
+
     let homeView = (req, res) => {
 
         const userName = req.cookies;

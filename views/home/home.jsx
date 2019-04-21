@@ -49,11 +49,11 @@ class LeftSidebar extends React.Component{
 
         return(
             <html>
-                <div class="col">
-                    <a class="navbar-brand col" href="/home">
+                <div class="col mt-2">
+                    <a class="navbar-brand col bg-light menu-bar" id="home-button" href="/home">
                         <span class="glyphicon glyphicon-home"> Home</span>
                     </a>
-                    <a class="navbar-brand col" href={formAction}>
+                    <a class="navbar-brand col bg-light menu-bar" id="profile-button" href={formAction}>
                         <span class="glyphicon glyphicon-user text-capitalize"> {userName}</span>
                     </a>
                 </div>
@@ -86,24 +86,46 @@ class ViewOthers extends React.Component{
         } else {
 
             outList = usersList.map((item,index)=>{
+                if(item.type == 'entity'){
                 let formAction = `/contact/${item.username}`
-            return    <div class="card">
+            return    <div class="card text-nowrap seller">
                             <div class="d-flex flex-column">
                             <div class="profile-img text-center">
                                 <img class="card-img" src={item.profile_pic_url}/>
                             </div>
-                            <div class="mb-4 mt-1 ml-2">
+                            <div class="mb-4 mt-3 ml-2">
                                 <h2 class="text-left font-weight-bold text-nowrap text-capitalize">{item.profile_desc}</h2>
+                                <h4 class="text-secondary mt-1 text-nowrap"><span class="font-italic">Looking for: </span> {item.interest}</h4>
                             </div>
-                            <div>
-
+                            <div class="border-top">
                                 <a href={formAction} class="" role="button" aria-pressed="true">
-                                <h4 class="text-secondary p-2">Contact: {item.username}</h4>
+                                <h4 class="text-secondary p-2">     {item.username}</h4>
                                 <h4 class="text-secondary p-2">Location: {item.location}</h4>
                                 </a>
                             </div>
                         </div>
                     </div>
+                } else {
+                    let formAction = `/contact/${item.username}`
+            return    <div class="card text-nowrap buyer">
+                            <div class="d-flex flex-column">
+                            <div class="profile-img text-center">
+                                <img class="card-img" src={item.profile_pic_url}/>
+                            </div>
+                            <div class="mb-4 mt-3 ml-2">
+                                <h2 class="text-left font-weight-bold text-nowrap text-capitalize">{item.profile_desc}</h2>
+                                <h4 class="text-secondary mt-1 text-nowrap"><span class="font-italic">Able to provide: </span> {item.interest}</h4>
+                            </div>
+                            <div class="border-top">
+                                <a href={formAction} class="" role="button" aria-pressed="true">
+                                <h4 class="text-secondary p-2">     {item.username}</h4>
+                                <h4 class="text-secondary p-2">Location: {item.location}</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
             })
         }
 
@@ -129,7 +151,7 @@ class Home extends React.Component {
 
                     <div>
                         <div class="row">
-                            <div class="col-lg-2 col-md-12 dash-board-left">
+                            <div class="col-lg-2 col-md-12">
                                 <LeftSidebar data={this.props.data}/>
                             </div>
                             <div class="col-lg-9 col-md-12 dash-board">

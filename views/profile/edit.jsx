@@ -22,12 +22,20 @@ class Head extends React.Component{
 
 class NavBar extends React.Component{
     render(){
+
         return(
             <html>
-                <nav class="navbar navbar-dark bg-dark">
-                    <div>
-                        <a class="navbar-brand" href="/home">HIVE   </a>
-                    </div>
+                <nav class="navbar navbar-light bg-light" >
+                    <form class="" method="POST" action="/search">
+                        <div class="row">
+                            <div class="">
+                                <input class="form-control"  name="SEARCH FOR LOCATION" placeholder="SEARCH FOR LOCATION" id="search-bar"/>
+                            </div>
+                            <div class="ml-2">
+                                <input type="submit" class="btn btn-outline-primary border border-primary btn-sm " value="SEARCH"/>
+                            </div>
+                        </div>
+                    </form>
                 </nav>
             </html>
         )

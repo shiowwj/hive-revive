@@ -49,7 +49,7 @@ class SignUpForm extends React.Component{
                         <form method="POST" action="/register/user">
                         <div class="mt-3">
                             <label>Store Location:</label>
-                            <input type="text" class="form-control" name="location" required/>
+                            <input type="text" class="form-control w-100" name="location" placeholder="Tampines, Bukit Batok, Bishan, Woodlands etc..." required/>
                         </div>
                          <div class="mt-3">
                             <label>What does your shop sell?</label>
@@ -65,7 +65,7 @@ class SignUpForm extends React.Component{
                             <input type="text" class="form-control" name="profile_pic_url"/>
                         </div>
                         <div class="mt-3">
-                            <label>New Username</label>
+                            <label>New Username for Login</label>
                             <input type="text" class="form-control" name="username" required/>
                         </div>
                         <div class="mt-3">
@@ -90,10 +90,8 @@ class Login extends React.Component {
                 <body>
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-6 bg-primary">
-                                <Aside/>
-                            </div>
-                            <div class="col-6  bg-light">
+
+                            <div class="col-6 bg-light">
                                 <SignUpForm/>
                             </div>
                         </div>
@@ -105,3 +103,8 @@ class Login extends React.Component {
 }
 
 module.exports = Login;
+
+
+// <div class="col-6 bg-primary">
+//                                 <Aside/>
+//                             </div>

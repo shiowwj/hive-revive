@@ -11,6 +11,7 @@ const SESHSALT = 'summer';
 
 module.exports = (db) => {
 
+    //MAKE CONTACT REQUIRES CURRENT USER, ALL COMMENTS & PROFILE VIEWED INFO
 
     const view = (req,res)=> {
 
@@ -22,8 +23,9 @@ module.exports = (db) => {
 
                 const user = (resultUser) => {
 
-                    const data = { resultProfile, resultComment , resultUser};
-                    res.render('contact/contactMain', {data} );
+                        console.log('resultttttt comments' , resultComment);
+                        const data = { resultProfile, resultComment , resultUser};
+                        res.render('contact/contactMain', {data} );
                 }
 
                 db.users.findUser(currentUser, user);
@@ -68,6 +70,11 @@ module.exports = (db) => {
         db.comments.add( dataToModel,  addComment );
     }
 
+    const testMap = (req,res) =>{
+
+        res.render('contact/testMap');
+    }
+
   /**
    * ===========================================
    * Export controller functions as a module
@@ -76,5 +83,6 @@ module.exports = (db) => {
   return {
     view: view,
     addComment : addComment,
+    map:testMap,
   };
 }

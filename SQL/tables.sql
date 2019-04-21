@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS comments_userid (
 id SERIAL PRIMARY KEY,
 comments TEXT,
 comment_from_userid INTEGER,
-owner_username TEXT
+owner_username TEXT,
+created_at TEXT
 );
 
 

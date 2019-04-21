@@ -48,6 +48,9 @@ module.exports = (app, allModels) => {
     //HOME PAGE
     app.get('/home', homeControllerCallbacks.home);
 
+    //TESTING GMAP
+    app.get('/map', contactControllerCallbacks.map);
+
 
     //SORTINg
 

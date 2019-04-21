@@ -24,13 +24,13 @@ class NavBar extends React.Component{
 
         return(
             <html>
-                <nav class="navbar navbar-light bg-light">
+                <nav class="navbar navbar-light bg-light" >
                     <form class="" method="POST" action="/search">
                         <div class="row">
-                            <div class="col-8">
-                                <input class="form-control"  name="SEARCH FOR LOCATION" placeholder="SEARCH FOR LOCATION"/>
+                            <div class="">
+                                <input class="form-control"  name="SEARCH FOR LOCATION" placeholder="SEARCH FOR LOCATION" id="search-bar"/>
                             </div>
-                            <div class="col-4">
+                            <div class="ml-2">
                                 <input type="submit" class="btn btn-outline-primary border border-primary btn-sm " value="SEARCH"/>
                             </div>
                         </div>
@@ -49,11 +49,11 @@ class LeftSidebar extends React.Component{
 
         return(
             <html>
-                <div class="col">
-                    <a class="navbar-brand col" href="/home">
+                <div class="col mt-2">
+                    <a class="navbar-brand col bg-light menu-bar" id="home-button" href="/home">
                         <span class="glyphicon glyphicon-home"> Home</span>
                     </a>
-                    <a class="navbar-brand col" href={formAction}>
+                    <a class="navbar-brand col bg-light menu-bar" id="edit-button" href={formAction}>
                         <span class="glyphicon glyphicon-wrench"> Edit</span>
                     </a>
                 </div>
@@ -91,7 +91,7 @@ class Profile extends React.Component {
                     <NavBar/>
                     <div>
                         <div class="row">
-                            <div class="col-lg-2 col-md-12 dash-board-left">
+                            <div class="col-lg-2 col-md-12">
                                 <LeftSidebar data={this.props.data}/>
                             </div>
                             <div class="col-lg-10 col-md-12 dash-board">

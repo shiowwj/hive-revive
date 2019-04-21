@@ -22,114 +22,25 @@ class Head extends React.Component{
 
 class NavBar extends React.Component{
     render(){
+
         return(
             <html>
-                <nav class="navbar navbar-dark bg-dark">
-                    <div>
-                        <a class="navbar-brand" href="/home">HIVE   </a>
-                    </div>
+                <nav class="navbar navbar-light bg-light" >
+                    <form class="" method="POST" action="/search">
+                        <div class="row">
+                            <div class="">
+                                <input class="form-control"  name="SEARCH FOR LOCATION" placeholder="SEARCH FOR LOCATION" id="search-bar"/>
+                            </div>
+                            <div class="ml-2">
+                                <input type="submit" class="btn btn-outline-primary border border-primary btn-sm " value="SEARCH"/>
+                            </div>
+                        </div>
+                    </form>
                 </nav>
             </html>
         )
     }
 }
-
-/*
-class LeftSidebar extends React.Component{
-    render(){
-
-        // console.log('VIEW LEFTSIDE!!!')
-        // console.log(this.props.data);
-
-        return(
-            <aside>
-                <figure>
-                    <div class="profile-img">
-                        <img class="profile-photo" src={this.props.data.userDetails.profile_pic_url}/>
-                    </div>
-                    <h4>User profile: {this.props.data.userDetails.username}</h4>
-                    <h3>{this.props.data.userDetails.profile_desc}</h3>
-                </figure>
-            </aside>
-        )
-    }
-}
-
-
-class RightSidebar extends React.Component{
-    render(){
-
-        console.log('RIGHTT SIDEE');
-        console.log(this.props.data.otherUsers);
-        const otherUsers = this.props.data.otherUsers;
-        let outList;
-        if(otherUsers == undefined){
-            outList = "No one really uses Tweeder....";
-        } else {
-            outList = otherUsers.map((item,index) =>{
-                let formAction = "/follow/" + item.id;
-                return  <div class="other-users-container">
-                            <div class="d-flex flex-row justify-content-between">
-                                <div>
-                                    <p class="text text-right">{item.username}</p>
-                                </div>
-                                <div>
-                                    <form method="POST" action={formAction}>
-                                    <input type="submit" class="btn btn-default" value="Follow"/>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-            })
-        }
-
-        return(
-            <aside>
-                <figure>
-                    <h4>Other Users</h4>
-                    {outList}
-                </figure>
-            </aside>
-        )
-    }
-}
-
-
-class ViewTweeds extends React.Component{
-    render(){
-        // console.log('VIEW TWEEDSSS!!!')
-        // console.log(this.props);
-        const tweedsAll = this.props.data.resultTweeds;
-        let outList;
-        if(tweedsAll == undefined){
-            outList = 'List of Community Spaces';
-        } else {
-
-            outList = tweedsAll.map((item,index)=>{
-            return  <div class="content tweeds-box">
-                        <div class="text-container">
-                            <div class="d-flex flex-row justify-content-between">
-                                <div>
-                                    <p class="text text-left">{item.tweeds}</p>
-                                </div>
-                                <div>
-                                    <a href="/tweeds/edit" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a href="/tweeds/delete" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            })
-        }
-        return(
-            <html>
-                {outList}
-            </html>
-        )
-    }
-}
-*/
 
 class ProfileUpdated extends React.Component {
     render(){
@@ -143,7 +54,6 @@ class ProfileUpdated extends React.Component {
                 <Head data={this.props.data}/>
                 <body>
                     <main>
-                        <div class="container">
                             <NavBar/>
                             <div class="row">
                             <h2>Username: {this.props.data.username}</h2>
@@ -162,7 +72,7 @@ class ProfileUpdated extends React.Component {
 
                                 </div>
                             </div>
-                        </div>
+
                     </main>
                 </body>
             </html>

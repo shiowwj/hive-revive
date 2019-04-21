@@ -9,7 +9,11 @@ module.exports = (dbPool) => {
             // console.log('INSIDE QUERYYY')
             // console.log(dataIn);
             // dataIn should give me the username of the profile page
-            let query = `SELECT * FROM comments_userid WHERE owner_username = '${dataIn.username}'`;
+            let query = `SELECT comments_userid.owner_username, comments_userid.comments, comments_userid.created_at, users.username
+                         FROM users
+                         INNER JOIN comments_userid
+                         ON (comments_userid.comment_from_userid = users.id)
+                         WHERE comments_userid.owner_username = '${dataIn.username}'`;
 
             dbPool.query(query, ( err, r )=>{
                 if( err ){
@@ -22,16 +26,19 @@ module.exports = (dbPool) => {
             })
         };
 
+        //INSERTS NEW COMMENT ENTRY
         const add = (dataIn, callback) => {
             //ADD DATE CREATED
             console.log("HOW TO SHAKE IT", dataIn);
 
+            let timeCreated = currentDateAndTime();
+
             let queryInsert = `INSERT into comments_userid
-                               (comments , comment_from_userid , owner_username)
-                               VALUES ($1, $2, $3)
+                               (comments , comment_from_userid , owner_username, created_at)
+                               VALUES ($1, $2, $3, $4)
                                RETURNING *`;
 
-            let valuesInsert = [dataIn.comment, dataIn.userId, dataIn.profileView];
+            let valuesInsert = [dataIn.comment, dataIn.userId, dataIn.profileView, timeCreated];
 
             dbPool.query(queryInsert, valuesInsert, ( err, resultInsert) => {
                 if( err ){
@@ -41,9 +48,11 @@ module.exports = (dbPool) => {
                     callback(resultInsert);
                 }
             })
+        };
 
 
-        }
+
+
 
 
         //usernams of all the user_id commenting

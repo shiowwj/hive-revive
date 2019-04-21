@@ -11,7 +11,7 @@ const SESHSALT = 'summer';
 
 module.exports = (db) => {
 
-    let profileView = (req,res)=>{
+    const profileView = (req,res)=>{
 
         const checkSessionId = sha256 (SALT + SESHSALT + req.cookies.username);
         let userName = req.params;
@@ -30,7 +30,7 @@ module.exports = (db) => {
         }
     }
 
-    let profileEditForm = (req,res)=>{
+    const profileEditForm = (req,res)=>{
 
         const checkSessionId = sha256 (SALT + SESHSALT + req.cookies.username);
         //NEED TO AUTHENTICATE!!!
@@ -49,7 +49,7 @@ module.exports = (db) => {
         }
     }
 
-    let editRequest = (req,res)=>{
+    const editRequest = (req,res)=>{
 
         const findUser = ( userDetails ) =>{
 
@@ -69,6 +69,7 @@ module.exports = (db) => {
 
         db.users.findUser( req.params, findUser );
     }
+
 
 
   /**

@@ -1,11 +1,17 @@
 body{
 	font-family: 'PT Sans', sans-serif;
 	background-color: #E7ECEF;
+
+	/*padding:80px;*/
 		/*text-align: center;*/
 		/*width: auto;*/
 		/*margin: 0 auto;*/
 }
-
+.login-body{
+	font-family: 'PT Sans', sans-serif;
+	background-color: #E7ECEF;
+	background-image: url("https://fqwimages.com/wp-content/uploads/2015/05/Rochor_Sunset_tiad_2.jpg");
+}
 .profile-photo{
 	/*max-width: 100%;
   height: auto;*/
@@ -26,6 +32,12 @@ body{
 	/*height: 100px;
 	width: 100%;*/
   /*border: 2px solid #282923;*/
+}
+
+.login-img{
+	width: 100%;
+	height: 500px;
+	object-fit: cover;
 }
 
 .side-profile-photo{
@@ -50,7 +62,6 @@ body{
 	background-color: #FFFFFF;
 	border: 1px solid #FFFFFF;
 	box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px 0px !important;
-	/*padding: 10px;*/
 	margin: 10px;
 }
 
@@ -82,3 +93,44 @@ body{
 .comment-drawer{
 	width: 700px;
 }
+
+.map-wrapper{
+	display: grid;
+	place-items: center;
+	/*margin: auto;*/
+	/*background-color: pink;*/
+}
+#map {
+  height: 600px;
+  width: 50%;
+  background-color: grey;
+ }
+
+
+.seller:hover {
+        background-color: #F5B9C2;
+}
+
+.buyer:hover {
+        background-color: #B5E1EF;
+}
+
+
+.menu-bar{
+	background-color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+	box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px 0px !important;
+}
+
+#home-button:hover {
+			border-right:2px solid grey;
+}
+
+#profile-button:hover {
+			border-right:2px solid grey;
+}
+
+#edit-button:hover {
+	border-right:2px solid grey;
+}
+      /* Optional: Makes the sample page fill the window. */

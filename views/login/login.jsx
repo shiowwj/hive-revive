@@ -23,15 +23,7 @@ class Aside extends React.Component{
             <html>
                 <div class="row login-page-left justify-content-center">
                     <section class="">
-                    <h4>
-                        <p>
-                        Do Something
-                        <br></br>
-                        Do Something
-                        <br></br>
-                        Do Something
-                        </p>
-                    </h4>
+                    <img class="login-img" src="https://static.wixstatic.com/media/319c7f_9ec69a5cb5924ad7a33d4d94e2e6b697~mv2.jpg"/>
                     </section>
                 </div>
             </html>
@@ -43,13 +35,13 @@ class LoginForm extends React.Component{
     render(){
         return (
             <html>
-                <div class="p-3 m-5">
+                <div class="p-3 m-5 text-center">
                     <h2>Login with Existing Account</h2>
                     <div class="row pt-4 justify-content-center">
                         <form method="POST" action="/login">
                             <input type="text" class="p-3 ml-2 mr-1" name="username" placeholder="Username"/>
                             <input type="password" class="p-3 ml-1 mr-2" name="password" placeholder="Password"/>
-                            <input type="submit" class="btn btn-outline-primary border border-primary btn-lg mt-3" value="Login"/>
+                            <input type="submit" class="btn btn-outline-primary border border-primary btn-lg" value="Login"/>
                         </form>
                     </div>
                 </div>
@@ -88,12 +80,10 @@ class Login extends React.Component {
         return (
             <html>
                 <Head/>
-                <body>
+                <body class="py-3 my-5 login-body">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-6 bg-primary">
-                                <Aside/>
-                            </div>
+
                             <div class="col-6  bg-light">
                                 <LoginForm/>
                                 <SignUp/>
@@ -107,3 +97,8 @@ class Login extends React.Component {
 }
 
 module.exports = Login;
+
+
+// <div class="col-6 bg-primary">
+//                                 <Aside/>
+//                             </div>

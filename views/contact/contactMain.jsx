@@ -13,6 +13,9 @@ class Head extends React.Component{
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
                 <link rel="stylesheet" type="text/css" href="/reset.css"/>
                 <link rel="stylesheet" href="/style.css"/>
+
+                <script type="text/javascript" src="gMap.js" />
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDB3x7-VzZ46Ozbqdpsb_VAt9_gcxAfuRs&libraries=places&callback=initMap" />
             </head>
             </html>
         )
@@ -70,7 +73,14 @@ class UserProfile extends React.Component{
 
         const dateRaw = this.props.data.created_at;
         const date = dateRaw.slice(0,10);
+        let textInterest;
+        if(this.props.data.type == 'entity'){
 
+            textInterest = "Looking for: ";
+        } else if(this.props.data.type == 'freelance'){
+
+            textInterest = "Able to provide: ";
+        }
 
         return(
             <html>
@@ -81,7 +91,7 @@ class UserProfile extends React.Component{
                         </div>
                          <div class="user-details-section py-5 px-2 mx-4 ">
                             <p class="text-secondary py-2 font-italic">{this.props.data.username}</p>
-                            <p class="text-capitalize py-2">Interested in: <span class="font-weight-bold"> {this.props.data.interest}</span></p>
+                            <p class="text-capitalize py-2"> {textInterest} <span class="font-weight-bold"> {this.props.data.interest}</span></p>
                             <p class="py-2">What he has to say: <span class="font-weight-bold font-italic">{this.props.data.profile_desc}</span></p>
                             <p class="py-2">Joined: <span class="text-secondary font-italic">{date}</span></p>
                         </div>
@@ -95,13 +105,18 @@ class UserProfile extends React.Component{
 class Comments extends React.Component{
     render(){
 
-        // console.log('COMMENTS AREA');
-        // console.log(this.props.data);
+        console.log('COMMENTS AREA');
+        console.log(this.props.data);
         const comments = this.props.data;
 
         let outList = comments.map((item,index) => {
-            return  <div class="comment-drawer">
-                       {index+1}. {item.comments}
+            return  <div class="comment-drawer border border-primary py-3 my-2 mx-2">
+                        <div>
+                            {item.comments}
+                        </div>
+                        <div>
+                            {item.username}
+                        </div>
                     </div>
 
         })

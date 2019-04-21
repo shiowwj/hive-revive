@@ -3,7 +3,7 @@ module.exports = (dbPool) => {
 
   // `dbPoolInstance` is accessible within this function scope
 
-
+  //CHECKS IF USER EXIST
     let checkUser = (dataIn, callback)=>{
 
         let queryExist  = `SELECT * FROM users WHERE username ='${dataIn}'`;
@@ -23,6 +23,7 @@ module.exports = (dbPool) => {
         })
     };
 
+    //INSERTS NEW USER DETAILS
     let addNewUser = (dataIn, callback) => {
 
         let timeCreated = currentDateAndTime();
@@ -45,6 +46,7 @@ module.exports = (dbPool) => {
         });
     };
 
+    //EDIT EXISTING USER DETAILS
     let editUser = (dataIn,callback)=>{
 
         let timeCreated = currentDateAndTime();
@@ -69,6 +71,7 @@ module.exports = (dbPool) => {
         });
     };
 
+    //LOOKS FOR SPECIFIC USER DETAILS
     let findUser = (dataIn, callback)=>{
 
         let query = `SELECT * FROM users WHERE username='${dataIn.username}'`;
@@ -88,6 +91,7 @@ module.exports = (dbPool) => {
         })
     };
 
+    //LOOKS FOR ALL OTHER USER DETAILS EXCEPT CURRENT USER
     let viewAllUsersExceptCurrent = (dataIn,callback)=>{
 
         const query = `SELECT id,username, interest, profile_pic_url, profile_desc, location, type FROM users WHERE id > 0
@@ -95,8 +99,8 @@ module.exports = (dbPool) => {
                        SELECT id,username, interest, profile_pic_url, profile_desc, location, type FROM users WHERE username = '${dataIn.username}'`;
 
         dbPool.query(query, (err,r)=>{
-            // console.log('DONE QUERRRRRYYY USERS');
-            // console.log(r);
+            console.log('DONE QUERRRRRYYY USERS');
+            console.log(r);
             if( err ){
                  console.log( "Error!", err );
             } else {

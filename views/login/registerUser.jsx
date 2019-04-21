@@ -56,7 +56,7 @@ class SignUpForm extends React.Component{
                             <textarea class="form-control" rows="2" name="profile_desc" required></textarea>
                         </div>
                          <div class="mt-3">
-                            <label>Interest</label>
+                            <label>What type of help do you want to provide?</label>
                             <textarea class="form-control" rows="2" name="interest" required></textarea>
                         </div>
                             <input type="text" class="form-control invisible" name="type" value="freelance"/>
@@ -65,7 +65,7 @@ class SignUpForm extends React.Component{
                             <input type="text" class="form-control" name="profile_pic_url"/>
                         </div>
                         <div class="mt-3">
-                            <label>New Username</label>
+                            <label>New Username for Login</label>
                             <input type="text" class="form-control" name="username" required/>
                         </div>
                         <div class="mt-3">
@@ -90,9 +90,7 @@ class Login extends React.Component {
                 <body>
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-6 bg-primary">
-                                <Aside/>
-                            </div>
+
                             <div class="col-6  bg-light">
                                 <SignUpForm/>
                             </div>
@@ -105,3 +103,7 @@ class Login extends React.Component {
 }
 
 module.exports = Login;
+
+ // <div class="col-6 bg-primary">
+ //                                <Aside/>
+ //                            </div>
