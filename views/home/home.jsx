@@ -7,7 +7,7 @@ class Head extends React.Component{
                 <head>
                 <meta name="viewport" content="initial-scale=1.0"/>
                 <meta charSet="utf-8"/>
-                <title>One Corner</title>
+                <title>GOVOIDDECK</title>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -25,13 +25,13 @@ class NavBar extends React.Component{
         return(
             <html>
                 <nav class="navbar navbar-light bg-light" >
-                    <form class="" method="POST" action="/search">
+                    <form class="" method="GET" action="/?search=location">
                         <div class="row">
                             <div class="">
-                                <input class="form-control"  name="SEARCH FOR LOCATION" placeholder="SEARCH FOR LOCATION" id="search-bar"/>
+                                <input class="form-control"  name="search" placeholder="SEARCH FOR LOCATION" id="search"/>
                             </div>
                             <div class="ml-2">
-                                <input type="submit" class="btn btn-outline-primary border border-primary btn-sm " value="SEARCH"/>
+                                <input type="submit"  class="btn btn-outline-dark border border-dark btn-sm" id="search-button" value="SEARCH"/>
                             </div>
                         </div>
                     </form>
@@ -47,14 +47,18 @@ class LeftSidebar extends React.Component{
         let userName = this.props.data.userDetails.username;
         let formAction = '/profile/'+ userName;
 
+
         return(
             <html>
                 <div class="col mt-2">
                     <a class="navbar-brand col bg-light menu-bar" id="home-button" href="/home">
-                        <span class="glyphicon glyphicon-home"> Home</span>
+                        <span class="glyphicon glyphicon-home"> </span>
                     </a>
                     <a class="navbar-brand col bg-light menu-bar" id="profile-button" href={formAction}>
-                        <span class="glyphicon glyphicon-user text-capitalize"> {userName}</span>
+                        <span class="glyphicon glyphicon-user text-capitalize"></span>
+                    </a>
+                    <a class="navbar-brand col bg-light menu-bar-profile" id="edit-button" href="/login">
+                        <span class="glyphicon glyphicon-log-out"></span>
                     </a>
                 </div>
             </html>
@@ -88,41 +92,45 @@ class ViewOthers extends React.Component{
             outList = usersList.map((item,index)=>{
                 if(item.type == 'entity'){
                 let formAction = `/contact/${item.username}`
-            return    <div class="card text-nowrap seller">
+            return    <div class="card seller text-truncate">
+                            <a href={formAction} class="card-link-tag" role="button" aria-pressed="true">
                             <div class="d-flex flex-column">
                             <div class="profile-img text-center">
                                 <img class="card-img" src={item.profile_pic_url}/>
                             </div>
                             <div class="mb-4 mt-3 ml-2">
-                                <h2 class="text-left font-weight-bold text-nowrap text-capitalize">{item.profile_desc}</h2>
-                                <h4 class="text-secondary mt-1 text-nowrap"><span class="font-italic">Looking for: </span> {item.interest}</h4>
+                                <h2 class="text-left font-weight-bold text-capitalize">{item.profile_desc}</h2>
+                                <h4 class="text-secondary mt-1 "><span class="font-italic">Looking for: </span> {item.interest}</h4>
                             </div>
                             <div class="border-top">
-                                <a href={formAction} class="" role="button" aria-pressed="true">
-                                <h4 class="text-secondary p-2">     {item.username}</h4>
+
+                                <h4 class="text-secondary p-2">     {item.name}</h4>
                                 <h4 class="text-secondary p-2">Location: {item.location}</h4>
-                                </a>
+
                             </div>
                         </div>
+                        </a>
                     </div>
                 } else {
                     let formAction = `/contact/${item.username}`
-            return    <div class="card text-nowrap buyer">
+            return    <div class="card buyer text-truncate">
+                            <a href={formAction} class="card-link-tag" role="button" aria-pressed="true">
                             <div class="d-flex flex-column">
                             <div class="profile-img text-center">
                                 <img class="card-img" src={item.profile_pic_url}/>
                             </div>
                             <div class="mb-4 mt-3 ml-2">
-                                <h2 class="text-left font-weight-bold text-nowrap text-capitalize">{item.profile_desc}</h2>
-                                <h4 class="text-secondary mt-1 text-nowrap"><span class="font-italic">Able to provide: </span> {item.interest}</h4>
+                                <h2 class="text-left font-weight-bold text-capitalize">{item.profile_desc}</h2>
+                                <h4 class="text-secondary mt-1"><span class="font-italic">Able to provide: </span> {item.interest}</h4>
                             </div>
                             <div class="border-top">
-                                <a href={formAction} class="" role="button" aria-pressed="true">
-                                <h4 class="text-secondary p-2">     {item.username}</h4>
+
+                                <h4 class="text-secondary p-2">     {item.name}</h4>
                                 <h4 class="text-secondary p-2">Location: {item.location}</h4>
-                                </a>
+
                             </div>
                         </div>
+                        </a>
                     </div>
 
                 }
@@ -131,7 +139,7 @@ class ViewOthers extends React.Component{
 
         return(
             <html>
-                <div class="row p-2">
+                <div class="row">
                     {outList}
                 </div>
             </html>

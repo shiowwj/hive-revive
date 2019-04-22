@@ -9,7 +9,7 @@ class Head extends React.Component{
             <html>
                 <head>
                 <meta charSet="utf-8"/>
-                <title>{userName} </title>
+                <title>{userName}</title>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -26,13 +26,13 @@ class NavBar extends React.Component{
         return(
             <html>
                 <nav class="navbar navbar-light bg-light" >
-                    <form class="" method="POST" action="/search">
+                    <form class="" method="GET" action="/?search=location">
                         <div class="row">
                             <div class="">
-                                <input class="form-control"  name="SEARCH FOR LOCATION" placeholder="SEARCH FOR LOCATION" id="search-bar"/>
+                                <input class="form-control"  name="search" placeholder="SEARCH FOR LOCATION" id="search"/>
                             </div>
                             <div class="ml-2">
-                                <input type="submit" class="btn btn-outline-primary border border-primary btn-sm " value="SEARCH"/>
+                                <input type="submit"  class="btn btn-outline-dark border border-dark btn-sm" id="search-button" value="SEARCH"/>
                             </div>
                         </div>
                     </form>

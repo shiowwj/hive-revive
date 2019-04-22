@@ -29,7 +29,7 @@ module.exports = (app, allModels) => {
     app.get('/register/user', loginControllerCallbacks.registerU);
     app.get('/register/entity', loginControllerCallbacks.registerE);
     //ADDS NEW USER
-    app.post('/register/user', loginControllerCallbacks.successR);
+    app.post('/register/new', loginControllerCallbacks.successR);
 
 
 
@@ -47,12 +47,12 @@ module.exports = (app, allModels) => {
     app.post('/contact/:username', contactControllerCallbacks.addComment)
     //HOME PAGE
     app.get('/home', homeControllerCallbacks.home);
-
     //TESTING GMAP
     app.get('/map', contactControllerCallbacks.map);
 
 
-    //SORTINg
+    //Search
+    app.get('/', homeControllerCallbacks.search);
 
 
 };

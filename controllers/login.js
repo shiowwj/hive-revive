@@ -70,7 +70,7 @@ module.exports = (db) => {
     }
 
     let registerSuccess = (req,res) => {
-
+        console.log('overrr herr');
         // check if username taken
         let enteredUser = req.body.username;
 

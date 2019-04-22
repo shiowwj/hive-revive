@@ -29,16 +29,30 @@ module.exports = (db) => {
         }
 
         db.users.findUser(userName , findUser);
-
     };
 
     //not in use
-    let sortBy = (req,res) =>{
+    let search = (req,res) =>{
         console.log("SORT STUFFF");
-        console.log(req.query)
+        console.log(req.query.search)
 
-        res.send("HELLO");
+        const userName = req.cookies;
+
+        const findUser = (userDetails) =>{
+
+            const searchLocation = (otherUsers) =>{
+
+                const data = {userDetails, otherUsers };
+                res.render('home/home', {data});
+            }
+
+            db.users.searchLocation(req.query.search, searchLocation);
+        }
+
+        db.users.findUser(userName , findUser);
     }
+
+
   /**
    * ===========================================
    * Export controller functions as a module
@@ -46,6 +60,6 @@ module.exports = (db) => {
    */
   return {
     home: homeView,
-    sort: sortBy,
+    search: search,
   };
 }

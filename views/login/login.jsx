@@ -6,7 +6,7 @@ class Head extends React.Component{
             <html>
                 <head>
                 <meta charSet="utf-8"/>
-                <title>One Corner</title>
+                <title>GOVOIDDECK</title>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -80,11 +80,14 @@ class Login extends React.Component {
         return (
             <html>
                 <Head/>
-                <body class="py-3 my-5 login-body">
+                <body class="py-3 my-3 login-body">
+
                     <div class="container">
+
                         <div class="row justify-content-center">
 
                             <div class="col-6  bg-light">
+                                <h3>Connect with your Community</h3>
                                 <LoginForm/>
                                 <SignUp/>
                             </div>

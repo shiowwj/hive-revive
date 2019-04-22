@@ -6,7 +6,7 @@ class Head extends React.Component{
             <html>
                 <head>
                 <meta charSet="utf-8"/>
-                <title>One Corner</title>
+                <title>GOVOIDDECK</title>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -46,7 +46,7 @@ class SignUpForm extends React.Component{
                 <div class="p-2 m-4">
                     <h2>Register an account</h2>
                     <div class="row justify-content-center">
-                        <form method="POST" action="/register/user">
+                        <form method="POST" action="/register/new">
                         <div class="mt-3">
                             <label>Store Location:</label>
                             <input type="text" class="form-control w-100" name="location" placeholder="Tampines, Bukit Batok, Bishan, Woodlands etc..." required/>
