@@ -29,6 +29,7 @@ class NavBar extends React.Component{
         return(
             <html>
                 <nav class="navbar navbar-light bg-light" >
+                    <img class="logo-photo" src="/logo.png"/>
                     <form class="" method="GET" action="/?search=location">
                         <div class="row">
                             <div class="">

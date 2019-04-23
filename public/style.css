@@ -12,6 +12,12 @@
 	background-color: #E7ECEF;
 	background-image: url("https://fqwimages.com/wp-content/uploads/2015/05/Rochor_Sunset_tiad_2.jpg");
 }
+
+.logo-photo{
+	height: 90px;
+  width: 90px;
+}
+
 .profile-photo{
 	/*max-width: 100%;
   height: auto;*/
