@@ -2,6 +2,7 @@ const express = require('express');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 
+
 /**
  * ===================================
  * Configurations and set up
@@ -10,6 +11,7 @@ const cookieParser = require('cookie-parser');
 
 // Init express app
 const app = express();
+// const server = require('http').Server(app);
 
 // Set up middleware
 app.use(methodOverride('_method'));
@@ -21,6 +23,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({
   extended: true
 }));
+
 
 // Set react-views to be the default view engine
 const reactEngine = require('express-react-views').createEngine();
@@ -61,7 +64,22 @@ setRoutesFunction(app, allModels);
  */
 const PORT = process.env.PORT || 3000;
 
+
 const server = app.listen(PORT, () => console.log('~~~ Tuning in to the waves of port '+PORT+' ~~~'));
+const io = require('socket.io')(server);
+
+io.on('connection', function(socket){
+            console.log('an user connected');
+            socket.broadcast.emit('hi');
+            socket.on('chat message', function(msg){
+                io.emit('chat message', msg);
+                io.emit('some event', { for: 'everyone' });
+                console.log('message: ' + msg);
+            });
+            socket.on('disconnect', function(){
+                console.log('user disconnected');
+            });
+        });
 
 let onClose = function(){
 

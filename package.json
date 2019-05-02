@@ -7,11 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "engines" : {
-    "node" : "^11.12.0"
+  "engines": {
+    "node": "^11.12.0"
   },
-
-
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -24,6 +22,7 @@
     "nodemon": "^1.18.11",
     "pg": "^7.9.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "socket.io": "^2.2.0"
   }
 }

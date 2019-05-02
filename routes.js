@@ -18,6 +18,8 @@ module.exports = (app, allModels) => {
     const viewProfileControllerCallbacks = require('./controllers/profile')(allModels);
     const contactControllerCallbacks = require('./controllers/makecontact')(allModels);
 
+    const chatController = require('./controllers/chat')(allModels);
+
 
 
     //LOGIN PAGE
@@ -54,5 +56,9 @@ module.exports = (app, allModels) => {
     //Search
     app.get('/', homeControllerCallbacks.search);
 
-
+    //chat request
+    app.get('/chat', chatController.test);
+  //    function (req, res) {
+  // res.sendFile(__dirname + '/index.html');
+// });
 };
