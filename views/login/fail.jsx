@@ -32,7 +32,7 @@ class Fail extends React.Component {
                                 <h2>Login Failure</h2>
                                 <section>
                                         <h4>Login Details are invalid!</h4>
-                                        <a href="/login">
+                                        <a href="/">
                                         <h4>Please click on the link to try again.</h4>
                                         </a>
                                         <h4>Create an account if you do not have one.</h4>
