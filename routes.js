@@ -23,7 +23,8 @@ module.exports = (app, allModels) => {
 
 
     //LOGIN PAGE
-    app.get('/login', loginControllerCallbacks.login);
+    // app.get('/login', loginControllerCallbacks.login);
+    app.get('/', loginControllerCallbacks.login);
     //LOGIN SUCCESS REQUEST PAGE
     app.post('/login', loginControllerCallbacks.successL);
 
@@ -54,7 +55,7 @@ module.exports = (app, allModels) => {
 
 
     //Search
-    app.get('/', homeControllerCallbacks.search);
+    app.get('/search', homeControllerCallbacks.search);
 
     //chat request
     app.get('/chat', chatController.test);

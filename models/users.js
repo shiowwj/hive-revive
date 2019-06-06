@@ -119,7 +119,7 @@ module.exports = (dbPool) => {
     let crudeSearchLocation = (dataIn, callback) =>{
 
 
-        const query = `SELECT * FROM users WHERE location LIKE '%${dataIn}';`
+        const query = `SELECT * FROM users WHERE location LIKE '%${dataIn}%';`
 
         dbPool.query(query, (err,r) =>{
             console.log('DONE QUERRRRRYYY USERS');

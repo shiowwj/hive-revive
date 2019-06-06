@@ -26,7 +26,7 @@ class NavBar extends React.Component{
             <html>
                 <nav class="navbar navbar-light bg-light" >
                     <img class="logo-photo" src="/logo.png"/>
-                    <form class="" method="GET" action="/?search=location">
+                    <form class="" method="GET" action="/search/?search=location">
                         <div class="row">
                             <div class="">
                                 <input class="form-control"  name="search" placeholder="SEARCH FOR LOCATION" id="search"/>

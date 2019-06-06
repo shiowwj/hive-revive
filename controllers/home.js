@@ -33,8 +33,16 @@ module.exports = (db) => {
 
     //not in use
     let search = (req,res) =>{
+
+        capitalize =(str)=>{
+            return str.charAt(0).toUpperCase()+str.slice(1);
+        }
+
+
         console.log("SORT STUFFF");
         console.log(req.query.search)
+
+        let string = capitalize(req.query.search);
 
         const userName = req.cookies;
 
@@ -46,7 +54,7 @@ module.exports = (db) => {
                 res.render('home/home', {data});
             }
 
-            db.users.searchLocation(req.query.search, searchLocation);
+            db.users.searchLocation(string, searchLocation);
         }
 
         db.users.findUser(userName , findUser);
