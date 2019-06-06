@@ -58,7 +58,7 @@ class LeftSidebar extends React.Component{
                     <a class="navbar-brand col bg-light menu-bar" id="profile-button" href={formAction}>
                         <span class="glyphicon glyphicon-user text-capitalize"></span>
                     </a>
-                    <a class="navbar-brand col bg-light menu-bar-profile" id="edit-button" href="/login">
+                    <a class="navbar-brand col bg-light menu-bar-profile" id="edit-button" href="/">
                         <span class="glyphicon glyphicon-log-out"></span>
                     </a>
                 </div>
